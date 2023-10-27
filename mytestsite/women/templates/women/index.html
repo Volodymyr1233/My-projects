@@ -1,0 +1,66 @@
+{% extends "women/main.html" %}
+{% load static %}
+{% block title %}
+{% load women_tags %}
+Головна сторінка
+{% endblock %}
+{% block connection %}
+<link rel="stylesheet" type="text/css" href="{%static 'women/css/style.css'%}">
+{% endblock %}
+{% block content %}
+{% block main %}
+<div class="header">
+    {% cats as cats %}
+    <div class="menu">
+        <img class='main_icon' src="{% static 'women/images/main_icon.png'%}">
+        <div class="links">
+            {% generate_menu %}
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="left-pannel">
+        <div class="categories">
+            <ul class="categ">
+                    {% create_allcats cat_slug=cat_slug%}
+                    {% for cat in cats %}
+                        {% if cat_slug == cat.slug  %}
+                            <li class="selected">{{cat.name}}</li><br>
+                        {% else %}
+                            <li><a href="{{ cat.generate_url}}">{{cat.name}}</a></li><br>
+                        {% endif %}
+                    {%  endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endblock  %}
+    <div class="articles">
+        {% if ident == 1 %}
+            {% if cat_slug != 0 %}
+                {% articles_category cat_slug=cat_slug as articles %}
+            {% else %}
+                {% articles_category as articles %}
+            {% endif %}
+        {% endif %}
+        {% block show_arts %}
+            {% for query in articles %}
+            <div class="dat_coord">
+                {% if cat_slug == 0 %}
+                    <h3>Категорія - всі</h3>
+                {% else %}
+                    <h3>Категорія - {{articles.0.cat.name}}</h3>
+                {% endif  %}
+            <h3 class="datetime">Дата - {{query.time_create|date:"d-m-Y H:i:s" }}</h3>
+            </div>
+            {% if query.photo  %}
+                <img src="{{ query.photo.url }}" class="photo_8">
+            {% endif %}
+            <h1>{{query.title}}</h1>
+            <p>{{query.content|truncatewords:70}}</p>
+            <a href="{{ query.generate_url }}"><input type="submit" name="{{query.content}}" class="butt" value="Читати пост"></a>
+            <hr>
+            {% endfor %}
+    </div>
+        {% endblock  %}
+</div>
+{% endblock %}

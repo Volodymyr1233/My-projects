@@ -1,0 +1,14 @@
+{% extends 'women/index.html' %}
+{% load women_tags %}
+{% load static %}
+{% block connection %}
+    {{ block.super}}
+    <link rel="stylesheet" type="text/css" href="{% static 'women/css/show_more.css'%}">
+{% endblock %}
+    {% block show_arts  %}
+        <h1>{{post_res.title}}</h1>
+        {% if post_res.photo %}
+            <img class='photo_9' src="{{post_res.photo.url}}">
+        {% endif %}
+        <p class="show_more_text">{{post_res.content}}</p>
+    {% endblock %}

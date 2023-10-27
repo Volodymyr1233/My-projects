@@ -1,0 +1,17 @@
+{% extends 'women/index.html' %}
+{% block content %}
+{% block main %}
+    {{ block.super }}
+    <form action="{% url 'addpage' %}" method="POST" class="form_article">
+        {% csrf_token %}
+        <div>{{form.non_field_errors}}</div>
+        {% for f in form %}
+            <div class="form_lab">
+                <p><label for="{{ f.id_for_label }} ">{{ f.label }}: {{ f }}</label></p>
+            </div>
+        {% endfor %}
+        <button type='submit' class="form_but">Добавити статтю</button>
+    </form>
+
+{% endblock %}
+{% endblock %}

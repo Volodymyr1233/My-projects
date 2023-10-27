@@ -1,0 +1,16 @@
+{% extends "women/base.html" %}
+{% load django_simple_tags %}
+{% load women_tags %}
+{% block header  %}
+    {{ block.super}}
+    <h1>Hello world, I am back...</h1>
+{% endblock header %}
+{% block content %}
+    {{ block.super }}
+    <h2>name - {{name}}</h2>
+    <h2>age - {{age}}</h2>
+    <h2>{{ res.0.phone_num|add_phone }}</h2>
+
+{% endblock content %}
+
+
