@@ -1,0 +1,129 @@
+WindowManager:
+     FirstWindow:
+     SecondWindow:
+     LastWindow
+
+<FirstWindow>:
+     name: 'name1'
+     widget: button
+     BoxLayout:
+          orientation: 'vertical'
+          Button:
+               id: button
+               text: "Exchange rate"
+               font_size: 40
+               on_release: app.root.current = 'name2'
+
+          Button:
+               id: button1
+               text: "Find out the weather"
+               font_size: 40
+               on_release: app.root.current = "namelast"
+     FloatLayout:
+          orientation: 'vertical'
+          Button:
+               id: back
+               text: 'Exit'
+               background_color: 255/255, 0/255, 0/255
+               pos_hint: {'left_x': 0, 'top' : 1}
+               size_hint: 0.08,0.06
+               on_release: root.exit_app()
+
+
+<SecondWindow>:
+     name: 'name2'
+     resultat: result
+     BoxLayout:
+          orientation: 'vertical'
+
+
+          Label:
+               id: result
+               text: 'Press the button and exchange rate will appear'
+               font_size: 27
+               background_color: 255/255, 0/255, 0/255, 1
+          Button:
+               id: button1
+               text: "USD"
+               background_color: 102/255, 255/255,0/255,1
+               color: 255/255,255/255,0/255,1
+               font_size: 40
+               on_release: root.press1()
+          Button:
+               id: button2
+               text: "EUR"
+               background_color: 102/255, 255/255,0/255,1
+               color: 255/255,255/255,0/255,1
+               font_size: 40
+               on_release: root.press2()
+          Button:
+               id: button3
+               text: "PLN"
+               background_color: 102/255, 255/255,0/255,1
+               color: 255/255,255/255,0/255,1
+               font_size: 40
+               on_release: root.press3()
+
+     FloatLayout:
+          orientation: 'vertical'
+          Button:
+               id: back
+               text: 'Back'
+               pos_hint: {'left_x': 0, 'top' : 1}
+               size_hint: 0.08,0.06
+               on_release: app.root.current = 'name1'
+
+
+<LastWindow>:
+     name: "namelast"
+     input: textik
+     label1: one
+     label2: two
+     label3: three
+     label4: four
+     BoxLayout:
+          orientation: 'vertical'
+          Label:
+               text: "Enter your city for weather"
+               color: 220/255,20/255,86/255,1
+               font_size: 20
+          TextInput:
+               id: textik
+               text: ''
+               size_hint: [80, 1]
+               padding: 338,30,30,30
+               font_size: 20
+          Button:
+               text: 'Find out the weather'
+               border: 12,12,12,12
+               background_color: 55/255,220/255,20/255,1
+               font_size:20
+               on_release: root.pressed()
+
+          Label:
+               id: one
+               text: 'Status: '
+               color: 75/255,220/255,20/255,1
+               font_size: 20
+          Label:
+               id: two
+               text: 'Humidity: '
+               color: 75/255,220/255,20/255,1
+               font_size: 20
+          Label:
+               id: three
+               text: 'Temperature: '
+               color: 75/255,220/255,20/255,1
+               font_size: 20
+          Label:
+               id: four
+               text: 'Speed: '
+               color: 75/255,220/255,20/255,1
+               font_size: 20
+     FloatLayout:
+          orientation: 'vertical'
+          Button:
+               text: 'Back'
+               pos_hint: {'left_x': 0, 'top' : 1}
+               size_hint: 0.08,0.06
+               on_release: app.root.current = 'name1'
